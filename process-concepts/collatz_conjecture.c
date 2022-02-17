@@ -31,7 +31,6 @@ int main(int argc, char *argv[]) {
     }
 
     pid_t pid = fork();
-    int status;
 
     //Child Process
     if(pid == 0) {
