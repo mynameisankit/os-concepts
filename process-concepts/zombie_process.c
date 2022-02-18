@@ -16,8 +16,12 @@ int main() {
 
     pid_t pid = fork();
 
+    if(pid < 1) {
+        printf("Process creation failed\n");
+        return 1;
+    }
     //Child Process
-    if(pid == 0) {
+    else if(pid == 0) {
         //Run the child process for atleast 10 seconds
         exit(0);
     }

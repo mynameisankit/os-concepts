@@ -52,8 +52,12 @@ int main(int argc, char *argv[]) {
     //Memory map the shared memory object
     ptr = mmap(0, SIZE, PROT_WRITE, MAP_SHARED, shm_fd, 0);
 
+    if(pid < 1) {
+        printf("Process creation failed\n");
+        return 1;
+    }
     //Child Process
-    if(pid == 0) {
+    else if(pid == 0) {
         const int BUFFER_SIZE = 100;
 
         char buffer[BUFFER_SIZE];
@@ -89,6 +93,10 @@ int main(int argc, char *argv[]) {
          * Resolves producer-consumer problem by synchronization through wait() sys call
          * */
         printf("%s\n", (char *)ptr);
+
+        //Remove the shared-memory sobject
+        //after the consumer is done
+        shm_unlink(name);
     }
 
     return 0;

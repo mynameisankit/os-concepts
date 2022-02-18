@@ -32,8 +32,12 @@ int main(int argc, char *argv[]) {
 
     pid_t pid = fork();
 
+    if(pid < 1) {
+        printf("Process creation failed\n");
+        return 1;
+    }
     //Child Process
-    if(pid == 0) {
+    else if(pid == 0) {
         printf("%d ", n);
         while(n != 1) {
             if(n % 2 == 0)
