@@ -14,6 +14,8 @@ int main() {
      * and resend it to the parent process
      * */
 
+    //Read - https://stackoverflow.com/questions/24766013/is-it-really-necessary-to-close-the-unused-end-of-the-pipe-in-a-process#:~:text=Pipes%20are%20destined%20to%20be,some%20mess%20in%20sent%20messages.
+
     const int BUFFER_SIZE = 100;
     char msg[] = "Hi There!";
     int fd1[2], fd2[2];
