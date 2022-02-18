@@ -2,6 +2,7 @@
 #include<unistd.h>
 #include<ctype.h>
 #include<string.h>
+#include<sys/wait.h>
 
 #define READ_END 0
 #define WRITE_END 1
@@ -56,6 +57,9 @@ int main() {
 
         printf("Original Message : %s\n", msg);
         printf("New Message : %s\n", buffer);
+
+        //Wait for the child to terminate
+        wait(NULL);
     }
     //Child process
     else {
@@ -77,6 +81,9 @@ int main() {
         write(fd2[WRITE_END], buffer, strlen(buffer) + 1);
 
         close(fd2[WRITE_END]);
+
+        //Exit normally
+        exit(0);
     }
 
     return 0;
