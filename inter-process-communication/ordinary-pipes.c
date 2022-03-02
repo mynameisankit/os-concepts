@@ -3,6 +3,7 @@
 #include<ctype.h>
 #include<string.h>
 #include<sys/wait.h>
+#include<stdlib.h>
 
 #define READ_END 0
 #define WRITE_END 1
@@ -36,7 +37,7 @@ int main() {
 
     if(pid < 1) {
         printf("Process creation failed\n");
-        return 1;
+        exit(1);
     }
     //Parent process
     else if(pid > 0) {
